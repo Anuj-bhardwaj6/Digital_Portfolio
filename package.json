@@ -1,0 +1,22 @@
+{
+  "name": "portfolio-website",
+  "version": "1.0.0",
+  "description": "Modern portfolio website with Three.js and GSAP",
+  "main": "index.html",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "three": "^0.157.0",
+    "gsap": "^3.12.2",
+    "lenis": "^1.0.29"
+  },
+  "devDependencies": {
+    "vite": "^4.4.9"
+  },
+  "keywords": ["portfolio", "threejs", "gsap", "webgl", "3d"],
+  "author": "Your Name",
+  "license": "MIT"
+}
