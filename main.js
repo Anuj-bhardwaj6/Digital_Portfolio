@@ -548,10 +548,36 @@ document.addEventListener('DOMContentLoaded', () => {
     // Project card interactions
     const projectCards = document.querySelectorAll('.project-card');
     projectCards.forEach(card => {
-        card.addEventListener('click', () => {
-            const projectId = card.dataset.project;
-            alert(`Opening project ${projectId}. In a real implementation, this would navigate to the project details.`);
-        });
+        const anchor = card.querySelector('a.project-btn');
+
+        if (anchor) {
+            // Let the anchor handle direct clicks.
+            // If user clicks elsewhere on the card, navigate to the anchor URL as well,
+            // respecting target="_blank".
+            card.addEventListener('click', (e) => {
+                // If the click was on a link (or inside a link), do nothing — anchor will handle it.
+                if (e.target.closest('a')) return;
+
+                const href = anchor.getAttribute('href');
+                const target = (anchor.getAttribute('target') || '').toLowerCase();
+
+                if (!href) return;
+
+                if (target === '_blank') {
+                    window.open(href, '_blank', 'noopener');
+                } else {
+                    window.location.href = href;
+                }
+            });
+        } else {
+            // Fallback: navigate to a project page when no anchor exists
+            card.addEventListener('click', () => {
+                const projectId = card.dataset.project;
+                if (projectId) {
+                    window.location.href = `projects/project-${projectId}.html`;
+                }
+            });
+        }
     });
     
     // Button interactions
